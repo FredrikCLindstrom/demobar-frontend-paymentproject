@@ -1,25 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import './css/App.css';
+import NavMain from "./Components/NavMain";
+import Menu from "./Components/Menu";
+import Tray from "./Components/Tray";
+import {useState} from "react";
+import Payment from "./Components/Payment";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [orderList, setOrderList] = useState([]);
+    const [show, setShow] = useState(false)
+    return (
+        <div className="App">
+            <NavMain/>
+            <Tray orderList={orderList} setOrderList={setOrderList} setShow={setShow} show={show}/>
+            <Menu orderList={orderList} setOrderList={setOrderList}/>
+            <Payment orderList={orderList} setOrderList={setOrderList} setShow={setShow} show={show}/>
+
+        </div>
+    );
 }
 
 export default App;

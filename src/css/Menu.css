@@ -1,0 +1,87 @@
+.Menu--listOfItems{
+    border: solid;
+    border-radius: 1rem;
+    padding:0.5rem;
+    margin: 0.5rem;
+    margin-left: 3rem;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    background-color: bisque;
+}
+.Menu--listOfItems-inTray{
+    border: solid;
+    border-radius: 1rem;
+    padding:0.5rem;
+    margin: 0.5rem;
+    margin-left: 3rem;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    background-color: bisque;
+    /*width:100%;*/
+    /*height: fit-content;*/
+    /*border: solid;*/
+    /*border-radius: 1rem;*/
+    /*padding: 0.1rem;*/
+    /*margin: 0.1rem;*/
+    /*margin-left: 0.1rem;*/
+    /*list-style: none;*/
+    /*justify-content: space-between;*/
+    /*flex-direction: row;*/
+    /*background-color: rgba(101, 131, 208, 0.78);*/
+}
+.Menu--buyBtn{
+
+    background: rgb(3,184,57);
+    background: linear-gradient(0deg, rgba(3,184,57,0.8547794117647058) 0%, rgba(235,180,63,0.5606617647058824) 100%);
+}
+.Menu--removeBtn{
+    background: rgb(184, 3, 45);
+    background: linear-gradient(0deg, rgb(184, 3, 142) 0%, rgb(184, 3, 45) 100%);
+}
+.Menu--buyBtn:active{
+
+    border: solid black;
+    background: rgb(184, 3, 142);
+    background: linear-gradient(0deg, rgba(248, 67, 248, 0.54) 0%, rgba(7, 37, 115, 0.78) 100%);
+
+}
+#Menu--description{
+    border: solid;
+    border-radius: 1rem;
+    padding:0.5rem;
+    margin: 0.1rem;
+    background-color: bisque;
+}
+#lala{
+    position: relative;
+    margin:0;
+}
+
+.wrapper{
+    position: relative;
+}
+
+.payment-info{
+
+    z-index: 110;
+    top:31vh;
+    position: fixed;
+    border: solid black;
+    border-radius: 1rem;
+    width:96vw;
+    margin-left:2vw;
+    background: rgba(241, 6, 6, 0.75);
+
+}
+.pay-btn{
+    position: fixed;
+    margin-left: 15vw;
+    bottom: 1rem;
+    width:70vw;
+    background-color: lightgreen;
+
+}
