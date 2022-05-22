@@ -1,11 +1,13 @@
 
 import {useEffect, useState} from "react";
 import useFetch from "./useFetch";
+import StripeContainer from "./StripeContainer";
+import {Link, Redirect, useHistory} from "react-router-dom";
+import NavMain from "./NavMain";
+
 
 export default function Payment(props) {
 
-
-    const [totalPrice, setTotalPrice] = useState(0);
     const removeItem = (idin, index) => {
 
         let matchedId="empty";
@@ -27,30 +29,12 @@ export default function Payment(props) {
         props.orderList.map(item=>{
             tempPrice=tempPrice+item.item.price;
         })
-       setTotalPrice(tempPrice)
+       props.setTotalPrice(tempPrice)
     },[props.orderList])
 
     const {post, loading} = useFetch("");
 
-    const url = "http://localhost:8081/api/printReceipt"
 
-        function postNew(url) {
-        let newList=[]
-            props.orderList.forEach(item=>{
-            newList.push(item.item.id)
-        })
-            post(url, newList) // UUID?
-                .catch(error => console.log(error));
-        }
-
-
-    function orderSent() {
-
-        postNew(url)
-        props.setOrderList([]);
-        props.setShow(false)
-        console.log("Order sent");
-    }
 
     if(props.show) {
         return (
@@ -68,8 +52,9 @@ export default function Payment(props) {
                             </li>
                         )
                     })}
+                    {/*<button className="pay-btn" onClick={() => orderSent()}>{props.totalPrice}kr pay!</button>*/}
+                    <Link to="/StripeCont" ><button className="pay-btn">{props.totalPrice}kr pay!</button></Link>
 
-                    <button className="pay-btn" onClick={() => orderSent()}>{totalPrice}kr pay!</button>
                 </div>
             </div>
 
@@ -80,3 +65,4 @@ export default function Payment(props) {
         </>)
     }
 }
+// <Link to='/paymentSide' > some stuff </Link>
