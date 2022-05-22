@@ -1,11 +1,12 @@
 
 import {useEffect, useState} from "react";
 import useFetch from "./useFetch";
+import StripeContainer from "./StripeContainer";
+import {Link, Redirect, useHistory} from "react-router-dom";
+import PaymentForm from "./PaymentForm";
 
 export default function Payment(props) {
 
-
-    const [totalPrice, setTotalPrice] = useState(0);
     const removeItem = (idin, index) => {
 
         let matchedId="empty";
@@ -27,7 +28,7 @@ export default function Payment(props) {
         props.orderList.map(item=>{
             tempPrice=tempPrice+item.item.price;
         })
-       setTotalPrice(tempPrice)
+       props.setTotalPrice(tempPrice)
     },[props.orderList])
 
     const {post, loading} = useFetch("");
@@ -50,7 +51,14 @@ export default function Payment(props) {
         props.setOrderList([]);
         props.setShow(false)
         console.log("Order sent");
+
+        // return(
+        //     <>
+        //         <PaymentForm/>
+        //     </>
+        // )
     }
+
 
     if(props.show) {
         return (
@@ -68,8 +76,7 @@ export default function Payment(props) {
                             </li>
                         )
                     })}
-
-                    <button className="pay-btn" onClick={() => orderSent()}>{totalPrice}kr pay!</button>
+                    <button className="pay-btn" onClick={() => orderSent()}>{props.totalPrice}kr pay!</button>
                 </div>
             </div>
 
@@ -80,3 +87,4 @@ export default function Payment(props) {
         </>)
     }
 }
+// <Link to='/paymentSide' > some stuff </Link>
