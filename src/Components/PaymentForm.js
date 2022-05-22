@@ -5,30 +5,34 @@ import "../css/PaymentForm.css"
 import {Link} from "react-router-dom";
 
 
-const CARD_OPTIONS = {
-	iconStyle: "solid",
-	style: {
-		base: {
-			iconColor: "#c4f0ff",
-			color: "#fff",
-			fontWeight: 500,
-			fontFamily: "Roboto, Open Sans, Segoe UI, sans-serif",
-			fontSize: "16px",
-			fontSmoothing: "antialiased",
-			":-webkit-autofill": { color: "#fce883" },
-			"::placeholder": { color: "#87bbfd" }
-		},
-		invalid: {
-			iconColor: "#ffc7ee",
-			color: "#ffc7ee"
-		}
-	}
-}
 
-export default function PaymentForm() {
-    const [success, setSuccess ] = useState(false)
+const cardStyle = {
+    hidePostalCode: true,
+    style: {
+        base: {
+            color: "#32325d",
+            fontFamily: 'Arial, sans-serif',
+            fontSmoothing: "antialiased",
+            fontSize: "16px",
+            "::placeholder": {
+                color: "#32325d"
+            }
+        },
+        invalid: {
+            fontFamily: 'Arial, sans-serif',
+            color: "#fa755a",
+            iconColor: "#fa755a"
+        }
+    }
+};
+
+export default function PaymentForm(props) {
+    //const [success, setSuccess ] = useState(false)
     const stripe = useStripe()
     const elements = useElements()
+    console.log("Stripe test CC, copy paste into input")
+    console.log("4242424242424242")
+
 
 
     const handleSubmit = async (e) => {
@@ -43,13 +47,14 @@ export default function PaymentForm() {
         try {
             const {id} = paymentMethod
             const response = await axios.post("http://localhost:4000/payment", {
-                amount: 1000,
+                amount: props.totalPrice,
                 id
+
             })
 
             if(response.data.success) {
                 console.log("Successful payment")
-                setSuccess(true)
+                props.setSuccess(true)
             }
 
         } catch (error) {
@@ -62,20 +67,21 @@ export default function PaymentForm() {
 
     return (
         <>
-        {!success ? 
+        {!props.success ?
+
         <form onSubmit={handleSubmit}>
             <fieldset className="FormGroup">
                 <div className="FormRow">
-                    <CardElement options={CARD_OPTIONS}/>
+                    <CardElement options={cardStyle}/>
                 </div>
             </fieldset>
-            <button className="buttonPay">Pay</button>
+            <button className="buttonPay">Pay {props.totalPrice}</button>
         </form>
         :
        <div>
-           <Link to='/' > back to menu </Link>
            <h2 className="messagePay">Youre waiter will be out with your order shortly</h2>
-       </div> 
+       </div>
+
         }
             
         </>

@@ -3,3 +3,17 @@ button{
 
 }
 
+.totalPriceCheckout{
+    text-align: center;
+}
+
+.Tray--trayBtn{
+    z-index: 11200;
+    background: rgba(241, 6, 6, 0.75);
+    padding:0.1rem;
+
+    position: fixed;
+    top: 16%;
+    left: 1;
+    box-shadow: 0.5rem 0.5rem 1.5rem black;
+}

@@ -1,12 +1,11 @@
 import './css/App.css';
-import NavMain from "./Components/NavMain";
+
 import Menu from "./Components/Menu";
-import Tray from "./Components/Tray";
+
 import {useState} from "react";
-import Payment from "./Components/Payment";
+
 import {BrowserRouter as Router, Redirect, Route, Routes} from "react-router-dom";
 import StripeContainer from "./Components/StripeContainer";
-import Start from "./Components/Start";
 
 function App() {
     const [orderList, setOrderList] = useState([]);
@@ -16,18 +15,29 @@ function App() {
         <>
             <Router>
                 <Routes>
+
                     <Route path="/" element={
-                        <Start
-                        totalPrice={totalPrice}
-                        setTotalPrice={setTotalPrice}
-                        orderList={orderList}
-                        setOrderList={setOrderList}
-                        setShow={setShow}
-                        show={show}/>
+                        <Menu
+                            orderList={orderList}
+                            setOrderList={setOrderList}
+                            setShow={setShow}
+                            show={show}
+                            totalPrice={totalPrice}
+                            setTotalPrice={setTotalPrice}
+
+                        />
                     }/>
-                    <Route path="/paymentSide" element={
-                        <StripeContainer totalPrice={totalPrice}/>
-                    }/>}/>
+
+
+                    <Route path="/StripeCont" element={
+                        <StripeContainer
+                            totalPrice={totalPrice}
+                            setOrderList={setOrderList}
+                            orderList={orderList}
+                            setShow={setShow}
+                            show={show}/>
+                    }/>
+
                 </Routes>
             </Router>
 

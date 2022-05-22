@@ -3,7 +3,8 @@ import {useEffect, useState} from "react";
 import useFetch from "./useFetch";
 import StripeContainer from "./StripeContainer";
 import {Link, Redirect, useHistory} from "react-router-dom";
-import PaymentForm from "./PaymentForm";
+import NavMain from "./NavMain";
+
 
 export default function Payment(props) {
 
@@ -33,31 +34,6 @@ export default function Payment(props) {
 
     const {post, loading} = useFetch("");
 
-    const url = "http://localhost:8081/api/printReceipt"
-
-        function postNew(url) {
-        let newList=[]
-            props.orderList.forEach(item=>{
-            newList.push(item.item.id)
-        })
-            post(url, newList) // UUID?
-                .catch(error => console.log(error));
-        }
-
-
-    function orderSent() {
-
-        postNew(url)
-        props.setOrderList([]);
-        props.setShow(false)
-        console.log("Order sent");
-
-        // return(
-        //     <>
-        //         <PaymentForm/>
-        //     </>
-        // )
-    }
 
 
     if(props.show) {
@@ -76,7 +52,9 @@ export default function Payment(props) {
                             </li>
                         )
                     })}
-                    <button className="pay-btn" onClick={() => orderSent()}>{props.totalPrice}kr pay!</button>
+                    {/*<button className="pay-btn" onClick={() => orderSent()}>{props.totalPrice}kr pay!</button>*/}
+                    <Link to="/StripeCont" ><button className="pay-btn">{props.totalPrice}kr pay!</button></Link>
+
                 </div>
             </div>
 
