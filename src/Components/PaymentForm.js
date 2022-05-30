@@ -79,6 +79,7 @@ export default function PaymentForm(props) {
         </form>
         :
        <div>
+           <h3 className="messagePay">table 1:</h3>
            <h2 className="messagePay">Youre waiter will be out with your order shortly</h2>
        </div>
 
