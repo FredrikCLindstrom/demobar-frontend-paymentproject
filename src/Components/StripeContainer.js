@@ -13,7 +13,6 @@ export default function StripeContainer(props) {
 
 	const [success, setSuccess ] = useState(false)
 	useEffect(()=>{
-		postNew(url)
 		orderSent()
 	},[])
 
@@ -49,6 +48,7 @@ export default function StripeContainer(props) {
 				orderDisplay={orderDisplay}
 				setOrderDisplay={setOrdersDisplay}
 			/>
+
 
 			{!success && <h2 className="totalPriceCheckout">price to pay {props.totalPrice}</h2>}
 			{success && <h2 className="totalPriceCheckout">your order: </h2>}
